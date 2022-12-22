@@ -7,19 +7,15 @@ const bodyParser = require("body-parser");
 app.set('view engine', 'ejs')
 app.use(bodyParser.json());
 
-app.get("/", async (request, response) => {
-  const todos = await Todo.listTodos();
-  response.render("index", {
-      todos: todos
-    );
-});
 
-app.get("/todos", async function (_request, response) {
+app.get("/", async function (_request, response) {
   console.log("Processing list of all Todos ...");
   // FILL IN YOUR CODE HERE
   try {
     const todos = await Todo.listTodos();
-    return response.status(200).json(todos);
+    return response.render("index", {
+      todos: todos
+  });
   } catch (error) {
     console.log(error);
     return response.status(422).json(error);
