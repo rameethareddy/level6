@@ -8,7 +8,10 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.json());
 
 app.get("/", function (request, response) {
-  response.render("index");
+  const todos = await Todo.listTodos();
+  response.render("index", {
+      todos: todos
+    );
 });
 
 app.get("/todos", async function (_request, response) {
