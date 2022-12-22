@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 app.get("/", function (request, response) {
-  response.send("Hello World");
+  response.render("index");
 });
 
 app.get("/todos", async function (_request, response) {
