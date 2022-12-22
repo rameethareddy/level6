@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 app.set('view engine', 'ejs')
 app.use(bodyParser.json());
 
-app.get("/", function (request, response) {
+app.get("/", async (request, response) => {
   const todos = await Todo.listTodos();
   response.render("index", {
       todos: todos
